@@ -20,20 +20,21 @@ const tweet = async(message)=>{
 }
 
 
-const cronTweet = new CronJob("0 8 * * *", async () => {
-    try {
-        tweet( await prompt())
-        console.log("sent ...")
-    } catch (error) {
+const cronTweet = new CronJob(process.env.INTERVAL || "0 8 * * *", async () => {
+    while (true) {
         try {
-            tweet( await prompt())
-            console.log("sent ...")
+            await tweet(await prompt());
+            console.log("Tweet sent successfully.");
+            break
         } catch (error) {
-            console.log(error)
+            console.error("Error occurred while tweeting:", error);
         }
-        console.log(error)
     }
-  });
+});
+
+// Start the cron job
+cronTweet.start();
+
   
   cronTweet.start();
 
