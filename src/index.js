@@ -20,7 +20,7 @@ const tweet = async(message)=>{
 }
 
 
-const cronTweet = new CronJob("* * * * *", async () => {
+const cronTweet = new CronJob("0 8 * * *", async () => {
     try {
         tweet( await prompt())
         console.log("sent ...")
