@@ -25,6 +25,12 @@ const cronTweet = new CronJob("0 8 * * *", async () => {
         tweet( await prompt())
         console.log("sent ...")
     } catch (error) {
+        try {
+            tweet( await prompt())
+            console.log("sent ...")
+        } catch (error) {
+            console.log(error)
+        }
         console.log(error)
     }
   });
