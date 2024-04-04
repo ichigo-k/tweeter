@@ -1,6 +1,6 @@
 import "dotenv/config"
 import express from "express"
-import  exports from "./twitterClient.js"
+import  {twitterClient} from "./twitterClient.js"
 import { CronJob } from "cron"
 import prompt from "./aiClient.js"
 
@@ -12,7 +12,7 @@ app.listen(process.env.PORT || 3000, ()=>{
 
 const tweet = async(message)=>{
     try {
-        await exports.twitterClient.v2.tweet(message)
+        await twitterClient.v2.tweet(message)
     } catch (error) {
         console.log(error)
     }
@@ -33,21 +33,9 @@ const cronTweet = new CronJob(process.env.INTERVAL || "0 8 * * *", async () => {
 });
 
 
-const cronTest = new CronJob(process.env.INTERVAL || "30 10 * * *", async () => {
-    while (true) {
-        try {
-            await tweet("Hello world");
-            console.log("Tweet sent successfully.");
-            break
-        } catch (error) {
-            console.error("Error occurred while tweeting:", error);
-        }
-    }
-});
-
 
 cronTweet.start();
-cronTest.start();
+
 
 
 

@@ -14,4 +14,4 @@ const twitterBearer = bearer.readOnly;
 
 
 
-export default { twitterClient, twitterBearer };
+export { twitterClient, twitterBearer };
