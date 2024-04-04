@@ -33,18 +33,7 @@ const cronTweet = new CronJob(process.env.INTERVAL || "0 8 * * *", async () => {
 });
 
 
-const cronTest = new CronJob("0 10 * * *", async () => {
-    
-        try {
-           tweet("Hello world")
-            console.log("Tweet sent successfully.");
-        } catch (error) {
-            console.error("Error occurred while tweeting:", error);
-        }
-    
-});
 
-cronTest.start();
 cronTweet.start();
 
 
