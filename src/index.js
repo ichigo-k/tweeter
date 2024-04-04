@@ -20,7 +20,7 @@ const tweet = async(message)=>{
 }
 
 
-const cronTweet = new CronJob(process.env.INTERVAL, async () => {
+const cronTweet = new CronJob(process.env.INTERVAL || "0 8 * * *", async () => {
     while (true) {
         try {
             await tweet(await prompt());
